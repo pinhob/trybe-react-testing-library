@@ -18,7 +18,7 @@ describe('1. Teste o componente <App.js />', () => {
     expect(thirdLink).toBeInTheDocument();
   });
 
-  it('Deve redirecionar para a página inicial quando clicado em home', () => {
+  it('Deve redirecionar para a página inicial quando clicado em Home', () => {
     const { history } = renderWithRouter(<App />);
 
     const homeButton = screen.getByText(/Home/i);
@@ -26,5 +26,15 @@ describe('1. Teste o componente <App.js />', () => {
 
     fireEvent.click(homeButton);
     expect(pathname).toBe('/');
+  });
+
+  it('Deve redirecionar para a página About quando clicado em About', () => {
+    const { history } = renderWithRouter(<App />);
+
+    const aboutButton = screen.getByText(/About/i);
+    fireEvent.click(aboutButton);
+
+    const { pathname } = history.location;
+    expect(pathname).toBe('/about');
   });
 });
