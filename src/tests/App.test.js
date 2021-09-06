@@ -37,4 +37,14 @@ describe('1. Teste o componente <App.js />', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/about');
   });
+
+  it('Deve redirecionar para a página Favorites Pokémons quando clicado no botão', () => {
+    const { history } = renderWithRouter(<App />);
+
+    const aboutButton = screen.getByText(/Favorite/i);
+    fireEvent.click(aboutButton);
+
+    const { pathname } = history.location;
+    expect(pathname).toBe('/favorites');
+  });
 });
