@@ -47,4 +47,11 @@ describe('1. Teste o componente <App.js />', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
   });
+
+  it('Deve redirecionar para a página NotFound quando a URL não existe', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/sou-mais-um-zeldinha');
+    const notFound = screen.getByText(/Page requested/i);
+    expect(notFound).toBeInTheDocument();
+  });
 });
