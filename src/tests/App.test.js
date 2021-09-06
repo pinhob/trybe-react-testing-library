@@ -1,10 +1,10 @@
-import { screen } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
 describe('1. Teste o componente <App.js />', () => {
-  it('Teste se o topo da aplicação contém um conjunto fixo de links de navegação', () => {
+  it('O topo da aplicação deve conter um conjunto fixo de links de navegação', () => {
     renderWithRouter(<App />);
 
     const nav = screen.getByRole('navigation');
@@ -16,5 +16,15 @@ describe('1. Teste o componente <App.js />', () => {
     expect(firstLink).toBeInTheDocument();
     expect(secondLink).toBeInTheDocument();
     expect(thirdLink).toBeInTheDocument();
+  });
+
+  it('Deve redirecionar para a página inicial quando clicado em home', () => {
+    const { history } = renderWithRouter(<App />);
+
+    const homeButton = screen.getByText(/Home/i);
+    const { pathname } = history.location;
+
+    fireEvent.click(homeButton);
+    expect(pathname).toBe('/');
   });
 });
