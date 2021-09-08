@@ -39,9 +39,10 @@ describe('6. Teste o componente Pokemon.js', () => {
     });
 
     it('Deve mostrar o peso médio do Pokémon na tela', () => {
-      const pokemonWeight = screen.getByText(/Average weight/i);
+      const pokemonWeight = screen.getByText(/Average weight: 48.0 kg/i);
 
       expect(pokemonWeight).toBeInTheDocument();
+      expect(pokemonWeight).toHaveTextContent(/Average weight: 48.0 kg/i);
     });
 
     it('Deve mostrar a imagem do Pokémon na tela, com alt text', () => {
