@@ -74,8 +74,9 @@ describe('6. Teste o componente Pokemon.js', () => {
         <Pokemon pokemon={ mockedPokemon } isFavorite />,
       );
       const link = screen.getByText(/More details/i);
+      console.log(history.location.pathname)
       fireEvent.click(link);
-
+      console.log(history.location.pathname)
       const { pathname } = history.location;
       expect(pathname).toBe('/pokemons/65');
     });
